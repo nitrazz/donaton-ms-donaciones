@@ -1,0 +1,59 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: donaton-ms-donaciones
+
+  # ── Base de Datos PostgreSQL ────────────────────────────────────────────────
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bd_donaciones
+    username: postgres
+    password: hola1234
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  # ── RabbitMQ Cluster en AWS ──────────────────────────────────────────────────
+  rabbitmq:
+    host: 35.172.225.128
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        acknowledge-mode: manual
+
+# ── Configuración de Mensajería y Routing Keys ─────────────────────────────────
+app:
+  rabbitmq:
+    exchanges:
+      donaciones: donaciones.direct
+      notificaciones: notificaciones.topic
+      dlx: dlx.direct
+    queues:
+      donaciones: cola.donaciones
+      notificaciones: cola.notificaciones
+      documentos: cola.documentos
+      dlq-donaciones: dlq.donaciones
+      dlq-notificaciones: dlq.notificaciones
+      dlq-documentos: dlq.documentos
+    routing-keys:
+      donacion-creada: donacion.creada
+      documento-generar: documento.generar
+      notificacion-topic: notif.#
+
+# ── Logging ───────────────────────────────────────────────────────────────────
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    com.gestionDonaton: DEBUG
+    org.springframework.amqp: DEBUG
