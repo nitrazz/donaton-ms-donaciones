@@ -5,9 +5,9 @@ spring:
   application:
     name: donaton-ms-donaciones
 
-  # ── Base de Datos PostgreSQL ────────────────────────────────────────────────
+  # ── Base de Datos PostgreSQL en AWS ─────────────────────────────────────────
   datasource:
-    url: jdbc:postgresql://localhost:5432/bd_donaciones
+    url: jdbc:postgresql://52.72.51.166:5432/bd_donaciones
     username: postgres
     password: hola1234
     driver-class-name: org.postgresql.Driver
@@ -23,7 +23,7 @@ spring:
 
   # ── RabbitMQ Cluster en AWS ──────────────────────────────────────────────────
   rabbitmq:
-    host: 35.172.225.128
+    host: 52.72.51.166
     port: 5672
     username: guest
     password: guest
