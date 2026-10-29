@@ -7,7 +7,7 @@ spring:
 
   # ── Base de Datos PostgreSQL en AWS ─────────────────────────────────────────
   datasource:
-    url: jdbc:postgresql://52.72.51.166:5432/bd_donaciones
+    url: jdbc:postgresql://100.48.180.247:5432/bd_donaciones
     username: postgres
     password: hola1234
     driver-class-name: org.postgresql.Driver
@@ -23,7 +23,7 @@ spring:
 
   # ── RabbitMQ Cluster en AWS ──────────────────────────────────────────────────
   rabbitmq:
-    host: 52.72.51.166
+    host: 100.48.180.247
     port: 5672
     username: guest
     password: guest
